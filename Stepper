@@ -1,0 +1,29 @@
+#include <Stepper.h>
+// Definir el numero de pasos por revolucion para el motor.
+// Esto varia segun el motor especifico.
+
+const int stepsPerRevolution = 200;
+
+// Inicializar la libreria Stepper en los pines a los que está conectado el motor.
+
+Stepper myStepper (stepsPerRevolution, 8, 9, 10, 11); // Pines 8, 9, 10, 11
+
+void setup() {
+  // Configurar la velocidad del motor (en RPM)
+  myStepper.setSpeed(60);
+  // Iniciar la comunicación serie para debug
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Girar el motor en una dirección
+  Serial.println("Girar en una dirección");
+  myStepper.step(stepsPerRevolution);
+  delay(1000);
+
+  // Girar el motor en la otra dirección
+  Serial.println("Girar en la otra dirección");
+  myStepper.step(-stepsPerRevolution);
+  delay(1000);
+}
+
